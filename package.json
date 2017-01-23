@@ -1,0 +1,25 @@
+{
+  "name": "node-book",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gitbook build",
+    "serve": "gitbook serve",
+    "start": "npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abouthiroppy/node-book.git"
+  },
+  "author": "abouthiroppy <git@about-hiroppy.com> (http://about-hiroppy.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abouthiroppy/node-book/issues"
+  },
+  "homepage": "https://github.com/abouthiroppy/node-book#readme",
+  "devDependencies": {
+    "gitbook-cli": "^2.3.0"
+  }
+}
