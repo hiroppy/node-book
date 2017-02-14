@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gitbook build",
     "serve": "gitbook serve",
-    "start": "npm run serve"
+    "start": "npm run serve",
+    "gitbook:install": "gitbook install"
   },
   "repository": {
     "type": "git",
