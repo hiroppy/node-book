@@ -8,6 +8,7 @@
     "build": "gitbook build",
     "serve": "gitbook serve",
     "start": "npm run serve",
+    "postinstall": "npm run gitbook:install",
     "gitbook:install": "gitbook install"
   },
   "repository": {
