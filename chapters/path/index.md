@@ -7,7 +7,8 @@
 const path = require('path');
 ```
 
-## sep
+## 変数
+### sep
 各プラットフォーム固有のパスセグメント区切り文字を提供します。
 ```js
 path.sep;
@@ -17,7 +18,7 @@ path.sep;
 // [ 'foo', 'bar', 'piyo.js' ]
 ```
 
-## delimiter
+### delimiter
 各プラットフォーム固有のパス区切り文字を提供します。  
 ```js
 path.delimiter;
@@ -28,22 +29,21 @@ process.env.PATH.split(path.delimiter)
 // ['/usr/bin', '/bin', '/usr/sbin', '/sbin', '/usr/local/bin']
 ```
 
-## posix
+### posix
 posix固有実装のアクセスを提供します。  
 ```js
 path.posix
 // Object
 ```
-## win32
+### win32
 windows固有実装のアクセスを提供します。  
 ```js
 path.win32
 // Object
 ```
 
----
-
-## basename
+## ファイルパスの条件取得
+### basename
 ディレクトリのパスを抜いたファイル名を取得する。  
 第二引数に拡張子を指定することにより、その拡張子を除くことができる。  
 
@@ -59,7 +59,7 @@ path.basename('/foo/bar/piyo.js', 'js');
 // 'piyo'
 ```
 
-## dirname
+### dirname
 path.basenameとは反対に、ディレクトリのパスからファイル名を抜いたパスを取得します。  
 
 |パラメータ|型|説明|
@@ -71,7 +71,7 @@ path.dirname('/foo/bar/piyo.js');
 // '/foo/bar'
 ```
 
-## extname
+### extname
 そのファイルの拡張子を取得します。  
 ない場合は空文字を返します。  
 
@@ -86,7 +86,8 @@ path.extname('piyo.js.x');
 // '.x'
 ```
 
-## format
+## ファイルパスの解析
+### format
 整形されたファイルパスを生成します。
 
 以下の点に注意してください。
@@ -135,7 +136,7 @@ path.format({
 // '/piyo.js'
 ```
 
-## parse
+### parse
 formatとは反対に、整形されたファイルパスを分解します。  
 
 |パラメータ|型|説明|
@@ -161,7 +162,51 @@ path.parse('/foo/bar/piyo.js');
 // }
 ```
 
-## join
+## 絶対パス、相対パス
+### resolve
+与えられたパス、またはパスセグメントを絶対パスへ変換します。  
+引数が空の場合は現在の作業ディレクトリの絶対パスを返します。  
+
+|パラメータ|型|説明|
+|:-|:-|:-|
+|...paths|String|ファイルパス|
+
+```js
+path.resolve('/foo/bar', 'piyo.js');
+// '/foo/bar/piyo.js'
+path.resolve('foo/bar', 'piyo.js');
+// '/Users/about_hiroppy/foo/bar/piyo.js'
+```
+
+### isAbsolute
+与えられたパスが絶対パスになっているかどうかを判断します。
+
+|パラメータ|型|説明|
+|:-|:-|:-|
+|path|String|ファイルパス|
+
+```js
+path.isAbsolute('/foo/bar');
+// true
+path.isAbsolute('./foo/bar');
+// false
+```
+
+### relative
+resolveとは反対に、与えられたfromからtoへの相対パスを返します。
+
+|パラメータ|型|説明|
+|:-|:-|:-|
+|from|String|基準となるディレクトリ|
+|to|String|目的となるディレクトリ|
+
+```js
+path.relative('/foo/bar/piyo.js', '/foo/hoge');
+// '../../hoge'
+```
+
+## 正規化
+### join
 与えられたパスをすべて結合し正規化したパスを取得します。  
 結合のデリミタはプラットフォームに依存します。  
 引数が空の場合は`.`を返します。  
@@ -177,7 +222,7 @@ path.join('foo', '/bar', 'piyo.js', '..');
 // 'foo/bar'
 ```
 
-## normalize
+### normalize
 与えられたパスの`..`, '.'セグメントの解決を行います。  
 引数が空の場合は`.`を返します。  
 
@@ -190,44 +235,3 @@ path.normalize('/foo/bar/../bar/piyo.js');
 // '/foo/bar/piyo.js'
 ```
 
-## resolve
-与えられたパス、またはパスセグメントを絶対パスへ変換します。  
-引数が空の場合は現在の作業ディレクトリの絶対パスを返します。  
-
-|パラメータ|型|説明|
-|:-|:-|:-|
-|...paths|String|ファイルパス|
-
-```js
-path.resolve('/foo/bar', 'piyo.js');
-// '/foo/bar/piyo.js'
-path.resolve('foo/bar', 'piyo.js');
-// '/Users/about_hiroppy/foo/bar/piyo.js'
-```
-
-## relative
-resolveとは反対に、与えられたfromからtoへの相対パスを返します。
-
-|パラメータ|型|説明|
-|:-|:-|:-|
-|from|String|基準となるディレクトリ|
-|to|String|目的となるディレクトリ|
-
-```js
-path.relative('/foo/bar/piyo.js', '/foo/hoge');
-// '../../hoge'
-```
-
-## isAbsolute
-与えられたパスが絶対パスになっているかどうかを判断します。
-
-|パラメータ|型|説明|
-|:-|:-|:-|
-|path|String|ファイルパス|
-
-```js
-path.isAbsolute('/foo/bar');
-// true
-path.isAbsolute('./foo/bar');
-// false
-```
