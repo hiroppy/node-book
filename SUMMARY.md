@@ -7,3 +7,4 @@
   - [Console](./chapters/core-modules/console/index.md)
   - [Path](./chapters/core-modules/path/index.md)
   - [QueryString](./chapters/core-modules/querystring/index.md)
+  - [Util](./chapters/core-modules/util/index.md)
