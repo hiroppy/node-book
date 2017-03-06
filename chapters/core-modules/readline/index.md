@@ -6,17 +6,32 @@
 const readline = require('readline');
 ```
 
-## event
-```js
-const readline = require('readline');
+## createInterface
+インターフェイスを作ります。
 
+|パラメータ|型|説明|
+|:-|:-|:-|
+|options|Object||
+|input|Readable|読み込み可能なストリームを指定。必須オプション|
+
+```js
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
   prompt: 'Hi> '
 });
+
+```
+
+## event
+```js
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 ```
 入力用のstreamと出力用のstreamの指定が必要です。  
+[createInterface](#createinterface)
 
 ### line
 入力された文字列がコールバックの第一引数に与えられます。
